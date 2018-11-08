@@ -29,7 +29,7 @@ const formTmpl = `
 <html lang="tw">
     </head>
     <body>
-    <form action="/action_page.php">
+    <form>
         Service Code:<br>
         <input type="text" name="code" value="123456"><br>
         <input type="submit" value="Submit">
