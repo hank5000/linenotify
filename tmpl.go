@@ -32,7 +32,7 @@ const formTmpl = `
     <form>
         Service Code:<br>
         <input type="text" name="code" value="123456"><br>
-        <input type="text" name="token" value='{{.TOKEN}} disabled'><br>
+        <input type="text" name="token" value='{{.TOKEN}}' disabled><br>
         <input type="submit" value="Submit">
     </form>
 
