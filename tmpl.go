@@ -32,7 +32,7 @@ const formTmpl = `
     <form action="/connecting">
         Service Code:<br>
         <input type="text" name="code" value="123456"><br>
-        <input type="text" name="token" value='{{.TOKEN}}' type="hidden"><br>
+        <input type="text" name="token" value='{{.TOKEN}}' readonly="readonly"><br>
         <input type="submit" value="Submit">
     </form>
 
