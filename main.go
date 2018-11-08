@@ -164,4 +164,12 @@ func connectingHandler(w http.ResponseWriter, r *http.Request) {
 
 	err = t.Execute(w, noItems)
 	check(err)
+
+
+	aaa := url.Values{}
+	// aaa.Add("message", "hello, welcome to test!: token:"+token)
+	aaa.Add("message", "您註冊了您的服務碼為:"+code+", 感謝您")
+
+	cccc, dddd := apiCall("POST", apiNotify, aaa, token)
+	fmt.Println("ret:", string(cccc), " err:", dddd)
 }
