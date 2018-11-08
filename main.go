@@ -119,13 +119,15 @@ func connectHandler(w http.ResponseWriter, r *http.Request) {
 
 	r.ParseForm() // Populates request.Form
 	token := r.Form.Get("token")
+	fmt.Printf("connect Get token=%s\n", token)
+
 
 	t, err := template.New("webpage").Parse(formTmpl)
 	check(err)
 	noItems := struct {
-		token    string
+		TOKEN    string
 	}{
-		token:    token,
+		TOKEN:    token,
 	}
 
 	err = t.Execute(w, noItems)
