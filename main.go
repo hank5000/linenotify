@@ -32,6 +32,8 @@ func main() {
 	http.HandleFunc("/notify", notifyHandler)
 	http.HandleFunc("/auth", authHandler)
 	http.HandleFunc("/connect",connectHandler)
+	http.HandleFunc("/connecting",connectingHandler)
+
 	clientID = os.Getenv("ClientID")
 	clientSecret = os.Getenv("ClientSecret")
 	callbackURL = os.Getenv("CallbackURL")
@@ -128,6 +130,36 @@ func connectHandler(w http.ResponseWriter, r *http.Request) {
 		TOKEN    string
 	}{
 		TOKEN:    token,
+	}
+
+	err = t.Execute(w, noItems)
+	check(err)
+}
+
+
+
+func connectingHandler(w http.ResponseWriter, r *http.Request) {
+	check := func(err error) {
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+
+	r.ParseForm() // Populates request.Form
+	token := r.Form.Get("token")
+	code := r.Form.Get("code")
+
+	fmt.Printf("connecting token=%s, code=%s\n", token, code)
+
+
+	t, err := template.New("webpage").Parse(connectedTmpl)
+	check(err)
+	noItems := struct {
+		TOKEN    string
+		CODE	 string
+	}{
+		TOKEN:    token,
+		CODE: code,
 	}
 
 	err = t.Execute(w, noItems)

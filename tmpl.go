@@ -29,12 +29,21 @@ const formTmpl = `
 <html lang="tw">
     </head>
     <body>
-    <form>
+    <form action="/connecting">
         Service Code:<br>
         <input type="text" name="code" value="123456"><br>
         <input type="text" name="token" value='{{.TOKEN}}' disabled><br>
         <input type="submit" value="Submit">
     </form>
 
+    </body>
+`
+
+const connectedTmpl = `
+<!DOCTYPE html>
+<html lang="tw">
+    </head>
+    <body>
+    {{.TOKEN}} and {{.CODE}} is connected !! thanks.
     </body>
 `
