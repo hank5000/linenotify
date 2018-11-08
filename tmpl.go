@@ -23,3 +23,17 @@ const authTmpl = `
         <button onclick="oAuth2();"> 連結到 LineNotify 按鈕 </button>
 	</body>
 `
+
+const formTmpl = `
+<!DOCTYPE html>
+<html lang="tw">
+    </head>
+    <body>
+    <form action="/action_page.php">
+        Service Code:<br>
+        <input type="text" name="code" value="123456"><br>
+        <input type="submit" value="Submit">
+    </form>
+
+    </body>
+`

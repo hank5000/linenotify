@@ -31,6 +31,7 @@ func main() {
 	http.HandleFunc("/callback", callbackHandler)
 	http.HandleFunc("/notify", notifyHandler)
 	http.HandleFunc("/auth", authHandler)
+	http.HandleFunc("/connect",connectHandler)
 	clientID = os.Getenv("ClientID")
 	clientSecret = os.Getenv("ClientSecret")
 	callbackURL = os.Getenv("CallbackURL")
@@ -81,7 +82,9 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 
 
 	aaa := url.Values{}
-	aaa.Add("message", "hello, welcome to test!: token:"+token)
+	// aaa.Add("message", "hello, welcome to test!: token:"+token)
+	
+	aaa.Add("message", "https://hankwutest-linenotify.herokuapp.com/connect?token="+token)
 
 	cccc, dddd := apiCall("POST", apiNotify, aaa, token)
 	fmt.Println("ret:", string(cccc), " err:", dddd)
@@ -93,6 +96,27 @@ func authHandler(w http.ResponseWriter, r *http.Request) {
 		}
 	}
 	t, err := template.New("webpage").Parse(authTmpl)
+	check(err)
+	noItems := struct {
+		ClientID    string
+		CallbackURL string
+	}{
+		ClientID:    clientID,
+		CallbackURL: callbackURL,
+	}
+
+	err = t.Execute(w, noItems)
+	check(err)
+}
+
+
+func connectHandler(w http.ResponseWriter, r *http.Request) {
+	check := func(err error) {
+		if err != nil {
+			log.Fatal(err)
+		}
+	}
+	t, err := template.New("webpage").Parse(formTmpl)
 	check(err)
 	noItems := struct {
 		ClientID    string
