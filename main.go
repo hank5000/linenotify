@@ -83,8 +83,8 @@ func callbackHandler(w http.ResponseWriter, r *http.Request) {
 	aaa := url.Values{}
 	aaa.Add("message", "hello, welcome to test!: token:"+token)
 
-	byt, err := apiCall("POST", apiNotify, aaa, token)
-	fmt.Println("ret:", string(byt), " err:", err)
+	cccc, dddd := apiCall("POST", apiNotify, aaa, token)
+	fmt.Println("ret:", string(cccc), " err:", dddd)
 }
 func authHandler(w http.ResponseWriter, r *http.Request) {
 	check := func(err error) {
