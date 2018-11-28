@@ -57,7 +57,7 @@ func notifyHandler(w http.ResponseWriter, r *http.Request) {
 	fmt.Printf("Body=%s\n",string(b))
 
 	data := url.Values{}
-	data.Add("message", b)
+	data.Add("message", string(b))
 
 	byt, err := apiCall("POST", apiNotify, data, user_token)
 	fmt.Println("ret:", string(byt), " err:", err)
