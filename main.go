@@ -54,7 +54,7 @@ func notifyHandler(w http.ResponseWriter, r *http.Request) {
 	if errr != nil {
 		panic(errr)
 	}
-	fmt.Printf("Body=%s\n",b)
+	fmt.Printf("Body=%s\n",string(b))
 
 	data := url.Values{}
 	data.Add("message", b)
