@@ -46,12 +46,13 @@ func main() {
 func notifyHandler(w http.ResponseWriter, r *http.Request) {
 	r.ParseForm() // Populates request.Form
 	msg := r.Form.Get("msg")
+	user_token := r.Form.Get("token")
 	fmt.Printf("Get msg=%s\n", msg)
 
 	data := url.Values{}
 	data.Add("message", msg)
 
-	byt, err := apiCall("POST", apiNotify, data, token)
+	byt, err := apiCall("POST", apiNotify, data, user_token)
 	fmt.Println("ret:", string(byt), " err:", err)
 
 	res := newTokenResponse(byt)
