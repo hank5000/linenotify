@@ -18,6 +18,8 @@ import (
 	"net/http"
 	"net/url"
 	"os"
+	"io/ioutil"
+
 
 	"html/template"
 )
@@ -48,7 +50,9 @@ func notifyHandler(w http.ResponseWriter, r *http.Request) {
 	msg := r.Form.Get("msg")
 	user_token := r.Form.Get("token")
 	fmt.Printf("Get msg=%s\n", msg)
-	fmt.Printf("Body=%s\n",r.Body)
+	b, err := ioutil.ReadAll(r.Body)
+
+	fmt.Printf("Body=%s\n",b)
 
 	data := url.Values{}
 	data.Add("message", msg)
