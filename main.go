@@ -50,7 +50,7 @@ func notifyHandler(w http.ResponseWriter, r *http.Request) {
 	msg := r.Form.Get("msg")
 	user_token := r.Form.Get("token")
 	fmt.Printf("Get msg=%s\n", msg)
-	b, err := ioutil.ReadAll(r.Body)
+	b, errr := ioutil.ReadAll(r.Body)
 
 	fmt.Printf("Body=%s\n",b)
 
