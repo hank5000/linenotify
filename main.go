@@ -51,7 +51,9 @@ func notifyHandler(w http.ResponseWriter, r *http.Request) {
 	user_token := r.Form.Get("token")
 	fmt.Printf("Get msg=%s\n", msg)
 	b, errr := ioutil.ReadAll(r.Body)
-
+	if errr != nil {
+		panic(errr)
+	}
 	fmt.Printf("Body=%s\n",b)
 
 	data := url.Values{}
